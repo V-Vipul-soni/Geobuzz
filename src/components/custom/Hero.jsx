@@ -21,7 +21,7 @@ const destinations = [
 
 const attractions = [
   { name: "Taj Mahal",    place: "Agra, India",    emoji: "🕌", img: "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg?auto=compress&cs=tinysrgb&w=600" },
-  { name: "Eiffel Tower", place: "Paris, France",  emoji: "🗼", img: "https://images.pexels.com/photos/37405426/pexels-photo-37405426.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  { name: "Eiffel Tower", place: "Paris, France",  emoji: "🗼", img: "https://images.pexels.com/photos/28750221/pexels-photo-28750221.jpeg" },
   { name: "Colosseum",    place: "Rome, Italy",    emoji: "🏛️", img: "https://images.pexels.com/photos/2064827/pexels-photo-2064827.jpeg?auto=compress&cs=tinysrgb&w=600" },
   { name: "Great Wall",   place: "Beijing, China", emoji: "🧱", img: "https://images.pexels.com/photos/2412603/pexels-photo-2412603.jpeg?auto=compress&cs=tinysrgb&w=600" },
 ];
