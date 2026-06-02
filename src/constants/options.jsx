@@ -6,10 +6,10 @@ export const SelectTravelesList = [
 ];
 
 export const SelectBudgetOptions = [
-  { id: 1, title: "Low",      desc: "Under $100 per day",             icon: "💵" },
-  { id: 2, title: "Moderate", desc: "$100 - $300 per day",            icon: "💰" },
-  { id: 3, title: "Luxury",   desc: "$300+ per day",                  icon: "🤑" },
-  { id: 4, title: "Custom",   desc: "Set an exact maximum budget",    icon: "✍️" },
+  { id: 1, title: "Low",      desc: "Budget-friendly, everyday prices",   icon: "💵" },
+  { id: 2, title: "Moderate", desc: "Mid-range comfort",                  icon: "💰" },
+  { id: 3, title: "Luxury",   desc: "High-end, premium experiences",      icon: "🤑" },
+  { id: 4, title: "Custom",   desc: "Set an exact maximum budget",        icon: "✍️" },
 ];
 
 export const AI_PROMPT =

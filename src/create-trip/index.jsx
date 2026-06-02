@@ -88,9 +88,9 @@ function CreateTrip() {
     setLoading(true);
     try {
       let budgetConstraint = "";
-      if (formData?.budget === "Low") budgetConstraint = "with a cheap budget (Under $100 per day)";
-      else if (formData?.budget === "Moderate") budgetConstraint = "with a moderate budget ($100 - $300 per day)";
-      else if (formData?.budget === "Luxury") budgetConstraint = "with a luxury budget ($300+ per day)";
+      if (formData?.budget === "Low") budgetConstraint = "with a cheap/budget-friendly budget";
+      else if (formData?.budget === "Moderate") budgetConstraint = "with a moderate/mid-range budget";
+      else if (formData?.budget === "Luxury") budgetConstraint = "with a luxury/high-end budget";
       else if (formData?.budget === "Custom") {
         const perDayBudget = Math.round(Number(formData?.customBudget) / Number(formData?.noOfDays));
         budgetConstraint = `with a budget of approximately $${perDayBudget} per day`;
