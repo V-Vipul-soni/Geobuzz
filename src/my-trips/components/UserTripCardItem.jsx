@@ -2,10 +2,10 @@ import { getPlaceImage } from "@/service/GlobalApi";
 import { Image } from "@/components/custom/Image";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaCalendarAlt, FaUsers, FaWallet, FaArrowRight } from "react-icons/fa";
+import { FaCalendarAlt, FaUsers, FaWallet, FaArrowRight, FaTrash } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 
-function UserTripCardItem({ trip }) {
+function UserTripCardItem({ trip, onDelete }) {
   const [photoUrl, setPhotoUrl] = useState("/placeholder.jpg");
 
   useEffect(() => {
@@ -40,9 +40,22 @@ function UserTripCardItem({ trip }) {
             <MdLocationOn className="text-sm" />
             <span className="text-sm font-semibold">{cityName}</span>
           </div>
-          <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md border border-white/20 text-white p-2 rounded-full shadow-lg hover:scale-110 hover:bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300">
             <FaArrowRight className="text-xs" />
           </div>
+          <button 
+            onClick={(e) => {
+              e.preventDefault(); 
+              e.stopPropagation();
+              if(window.confirm('Are you sure you want to delete this trip?')) {
+                 onDelete(trip?.id);
+              }
+            }}
+            className="absolute top-3 left-3 bg-black/50 backdrop-blur-md border border-white/20 text-white hover:bg-red-500 hover:border-red-500 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300"
+            title="Delete Trip"
+          >
+            <FaTrash className="text-xs" />
+          </button>
         </div>
 
         {/* Content */}

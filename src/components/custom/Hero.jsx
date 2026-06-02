@@ -11,7 +11,7 @@ const fadeUp = (delay = 0) => ({
 });
 
 const destinations = [
-  { name: "Bali, Indonesia",   tag: "Beach Paradise",  rating: 4.9, img: "https://images.pexels.com/photos/15920151/pexels-photo-15920151.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  { name: "Bali, Indonesia",   tag: "Beach Paradise",  rating: 4.9, img: "https://images.pexels.com/photos/889954/pexels-photo-889954.jpeg" },
   { name: "Paris, France",     tag: "City of Love",    rating: 4.8, img: "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=600" },
   { name: "Kyoto, Japan",      tag: "Cultural Gem",    rating: 4.9, img: "https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=600" },
   { name: "Santorini, Greece", tag: "Island Escape",   rating: 4.7, img: "https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=600" },

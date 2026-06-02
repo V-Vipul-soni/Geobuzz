@@ -1,10 +1,11 @@
 import { db } from "@/service/firebaseConfig";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MdFlightTakeoff, MdExplore } from "react-icons/md";
 import UserTripCardItem from "./components/UserTripCardItem";
+import { toast } from "sonner";
 
 function MyTrips() {
   const navigate = useNavigate();
@@ -23,6 +24,17 @@ function MyTrips() {
     querySnapshot.forEach((doc) => trips.push(doc.data()));
     setUserTrips(trips);
     setLoading(false);
+  };
+
+  const handleDeleteTrip = async (tripId) => {
+    try {
+      await deleteDoc(doc(db, "AITrips", tripId));
+      setUserTrips(prev => prev.filter(trip => trip.id !== tripId));
+      toast.success("Trip deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting trip:", error);
+      toast.error("Failed to delete trip.");
+    }
   };
 
   return (
@@ -96,7 +108,7 @@ function MyTrips() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.07 }}>
-                <UserTripCardItem trip={trip} />
+                <UserTripCardItem trip={trip} onDelete={handleDeleteTrip} />
               </motion.div>
             ))}
           </div>

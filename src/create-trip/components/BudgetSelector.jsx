@@ -13,7 +13,7 @@ export default function BudgetSelector({ selectedBudget, setSelectedBudget, hand
         What's your budget?
       </label>
       <p className="text-xs text-gray-400 dark:text-gray-500 mb-4 ml-9">We'll tailor recommendations to match</p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {SelectBudgetOptions.map((item) => (
           <motion.button key={item.id} whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }}
             onClick={() => { setSelectedBudget(item.title); handleInputChange("budget", item.title); }}
@@ -33,6 +33,24 @@ export default function BudgetSelector({ selectedBudget, setSelectedBudget, hand
           </motion.button>
         ))}
       </div>
+
+      {selectedBudget === "Custom" && (
+        <motion.div initial={{ opacity: 0, height: 0, y: -10 }} animate={{ opacity: 1, height: "auto", y: 0 }} className="mt-5">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2 ml-1">
+            Enter your maximum total budget
+          </label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+            <input 
+              type="number"
+              min="0"
+              placeholder="e.g. 1500"
+              onChange={(e) => handleInputChange("customBudget", e.target.value)}
+              className="w-full pl-8 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition-all dark:text-white font-medium shadow-inner"
+            />
+          </div>
+        </motion.div>
+      )}
     </motion.section>
   );
 }

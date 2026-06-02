@@ -11,7 +11,7 @@ function Footer() {
           </div>
           <span className="font-bold text-gray-700">GeoBuzz</span>
         </div>
-        <p className="text-gray-400 text-sm">Designed by Team59™</p>
+        <p className="text-gray-400 text-sm">Designed by Team GeoBuzz™</p>
         <Link to="/" className="text-sm text-violet-600 hover:text-violet-700 font-medium hover:underline transition-colors">
           ← Back to Home
         </Link>

@@ -87,11 +87,20 @@ function CreateTrip() {
     }
     setLoading(true);
     try {
+      let budgetConstraint = "";
+      if (formData?.budget === "Low") budgetConstraint = "with a cheap budget (Under $100 per day)";
+      else if (formData?.budget === "Moderate") budgetConstraint = "with a moderate budget ($100 - $300 per day)";
+      else if (formData?.budget === "Luxury") budgetConstraint = "with a luxury budget ($300+ per day)";
+      else if (formData?.budget === "Custom") {
+        const perDayBudget = Math.round(Number(formData?.customBudget) / Number(formData?.noOfDays));
+        budgetConstraint = `with a budget of approximately $${perDayBudget} per day`;
+      }
+
       const FINAL_PROMPT = AI_PROMPT
         .replace("{location}",   formData?.location?.label)
         .replace(/{totalDays}/g, formData?.noOfDays)
         .replace("{traveler}",   formData?.traveler)
-        .replace("{budget}",     formData?.budget);
+        .replace("{budgetConstraint}", budgetConstraint);
       
       const response = await fetch('/api/generate-trip', {
         method: 'POST',
@@ -137,7 +146,8 @@ function CreateTrip() {
   };
 
   const isFormComplete =
-    formData?.location && formData?.noOfDays > 0 && formData?.traveler && formData?.budget;
+    formData?.location && formData?.noOfDays > 0 && formData?.traveler && formData?.budget &&
+    (formData?.budget !== "Custom" || (formData?.budget === "Custom" && formData?.customBudget));
 
   const checklist = [
     { label: "Destination",  done: !!formData?.location },
@@ -309,7 +319,7 @@ function CreateTrip() {
                         `📍 ${formData?.location?.label?.split(",")[0]}`,
                         `📅 ${formData?.noOfDays} days`,
                         `👥 ${formData?.traveler}`,
-                        `💰 ${formData?.budget}`,
+                        `💰 ${formData?.budget === "Custom" ? `$${formData?.customBudget}` : formData?.budget}`,
                       ].map((tag, i) => (
                         <span key={i} className="text-xs bg-white/15 backdrop-blur-sm border border-white/20 text-white px-3 py-1 rounded-full">
                           {tag}
