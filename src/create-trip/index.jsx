@@ -136,6 +136,7 @@ function CreateTrip() {
         tripData:      parsedData,
         userEmail:     user?.email,
         id:            tripRef.id,
+        isPublic:      false,
       });
       console.log('🔥 Saved to Firestore — Doc ID:', tripRef.id);
       navigate("/view-trip/" + tripRef.id);
