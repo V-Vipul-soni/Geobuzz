@@ -165,14 +165,9 @@ function Viewtrip() {
         <div className="flex justify-end mb-4 gap-2">
           {!editMode ? (
             isOwner && (
-              <>
-                <button onClick={handleShare} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  <FiShare2 /> Share
-                </button>
-                <button onClick={enterEditMode} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-violet-600 dark:text-violet-400 bg-white dark:bg-gray-900 border border-violet-200 dark:border-violet-700 rounded-lg shadow-sm hover:bg-violet-50 dark:hover:bg-violet-950/40 transition-colors">
-                  <FiEdit2 /> Edit Trip
-                </button>
-              </>
+              <button onClick={enterEditMode} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-violet-600 dark:text-violet-400 bg-white dark:bg-gray-900 border border-violet-200 dark:border-violet-700 rounded-lg shadow-sm hover:bg-violet-50 dark:hover:bg-violet-950/40 transition-colors">
+                <FiEdit2 /> Edit Trip
+              </button>
             )
           ) : (
             <div className="flex gap-2">
@@ -195,7 +190,7 @@ function Viewtrip() {
           </div>
         )}
 
-        <InfoSection trip={activeTrip} />
+        <InfoSection trip={activeTrip} onShare={handleShare} isOwner={isOwner} />
         <Hotels         
           trip={activeTrip} 
           editMode={editMode}

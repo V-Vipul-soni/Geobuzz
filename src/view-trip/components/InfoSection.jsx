@@ -6,7 +6,7 @@ import { IoIosSend } from "react-icons/io";
 import { FaCalendarAlt, FaUsers, FaWallet, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-function InfoSection({ trip }) {
+function InfoSection({ trip, onShare, isOwner }) {
   const [photoUrl, setPhotoUrl] = useState("/placeholder.jpg");
 
   useEffect(() => {
@@ -19,24 +19,6 @@ function InfoSection({ trip }) {
   };
 
   const cityName = trip?.userSelection?.location?.label?.split(",")[0] || "";
-
-  const handleShare = async () => {
-    const url = window.location.href;
-    const title = `${cityName} Trip Plan`;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title, text: `Check out my AI-generated trip to ${cityName}!`, url });
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          await navigator.clipboard.writeText(url);
-          toast.success("Link copied to clipboard!");
-        }
-      }
-    } else {
-      await navigator.clipboard.writeText(url);
-      toast.success("Link copied to clipboard!");
-    }
-  };
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
@@ -62,9 +44,11 @@ function InfoSection({ trip }) {
                 {trip?.userSelection?.location?.label?.split(",").slice(0, 2).join(",")}
               </h1>
             </div>
-            <Button onClick={handleShare} className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 rounded-xl">
-              <IoIosSend className="mr-2" /> Share
-            </Button>
+            {isOwner && (
+              <Button onClick={onShare} className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 rounded-xl">
+                <IoIosSend className="mr-2" /> Share
+              </Button>
+            )}
           </div>
         </div>
       </div>
